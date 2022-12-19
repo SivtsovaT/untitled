@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import {Route, Routes} from "react-router-dom";
+import PageOne from "./PageOne";
+import {useState} from "react";
+import PageTwo from "./PageTwo";
 
 function App() {
+    const [text, setText] = useState('');
+    const [value, setValue] = useState('')
+    const submit = () => {
+        setText(value);
+    }
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Routes>
+         <Route path='/' element={<PageOne submit={submit}
+                                           text={text}
+                                           value={value}
+                                           setValue={setValue}
+         />}/>
+         <Route path='two' element={<PageTwo text={text}/>}/>
+     </Routes>
     </div>
   );
 }
